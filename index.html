@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wisdom Vault</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============================================================
+     LOADING SCREEN
+     ============================================================ -->
+<div class="loader" id="loader">
+  <div class="loader__mark">
+    <svg viewBox="0 0 100 100" class="loader__glyph">
+      <circle cx="50" cy="50" r="38" fill="none" stroke="currentColor" stroke-width="1"/>
+      <path d="M50 20 L50 80 M32 30 L68 30 M32 30 L32 70 L50 80 L68 70 L68 30" fill="none" stroke="currentColor" stroke-width="1"/>
+    </svg>
+  </div>
+  <div class="loader__label">WISDOM&nbsp;VAULT</div>
+  <div class="loader__bar"><span class="loader__bar-fill" id="loaderFill"></span></div>
+</div>
+
+<!-- Cursor glow + ring (desktop only, hidden on touch via CSS/JS) -->
+<div class="cursor-glow" id="cursorGlow"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Ambient floating particles -->
+<canvas id="particles" class="particles"></canvas>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<nav class="nav" id="nav">
+  <div class="nav__mark">VAULT</div>
+  <ul class="nav__links">
+    <li><a href="#chamber">Chamber</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+  </ul>
+</nav>
+
+<!-- ============================================================
+     1. HERO SECTION
+     ============================================================ -->
+<header class="hero" id="hero">
+
+  <!-- ============================================================
+       REPLACE ME: HERO BACKGROUND IMAGE
+       To add your own image, either:
+         a) set this div's background via CSS in style.css
+            (search for "BACKGROUND_IMAGE_HERE" in style.css), or
+         b) uncomment the <img> tag below and set its src.
+       ============================================================ -->
+  <div class="hero__background" id="heroBackground" data-placeholder="BACKGROUND_IMAGE_HERE">
+    <!-- <img src="your-background.jpg" alt="" class="hero__background-img"> -->
+    <div class="hero__background-mark">BACKGROUND_IMAGE_HERE</div>
+  </div>
+
+  <div class="hero__vignette"></div>
+  <div class="hero__columns" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="hero__content">
+    <p class="hero__eyebrow">An Archive of Ancient Thought</p>
+    <h1 class="hero__title">
+      <span class="hero__title-line" data-reveal>WISDOM</span>
+      <span class="hero__title-line" data-reveal>VAULT</span>
+    </h1>
+    <p class="hero__subtitle" data-reveal>
+      Where the words of the ancients are kept, guarded, and given again to those who seek them.
+    </p>
+    <button class="btn-reveal" id="revealBtn" data-reveal>
+      <span class="btn-reveal__label">Reveal Wisdom</span>
+      <span class="btn-reveal__ring"></span>
+    </button>
+  </div>
+
+  <div class="hero__scrollcue">
+    <span class="hero__scrollcue-line"></span>
+    <span class="hero__scrollcue-text">Descend</span>
+  </div>
+</header>
+
+<!-- ============================================================
+     2. QUOTE CHAMBER
+     ============================================================ -->
+<main>
+<section class="chamber" id="chamber">
+  <div class="chamber__frame reveal-on-scroll">
+
+    <span class="chamber__glyph chamber__glyph--open">&#8220;</span>
+
+    <!-- ============================================================
+         QUOTE TEXT PLACEHOLDER — filled dynamically from the
+         `quotes` array in script.js. See script.js for instructions.
+         ============================================================ -->
+    <blockquote class="chamber__quote" id="quoteText">
+      Your quote will appear here.
+    </blockquote>
+
+    <!-- AUTHOR PLACEHOLDER -->
+    <cite class="chamber__author" id="quoteAuthor">— Author name here</cite>
+
+    <span class="chamber__glyph chamber__glyph--close">&#8221;</span>
+
+    <div class="chamber__controls">
+      <button class="chamber__btn" id="prevQuote" aria-label="Previous wisdom">&larr;</button>
+      <span class="chamber__index" id="quoteIndex">0 / 0</span>
+      <button class="chamber__btn" id="nextQuote" aria-label="Next wisdom">&rarr;</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     3. GALLERY — STATUE + TEMPLE PLACEHOLDERS
+     ============================================================ -->
+<section class="gallery" id="gallery">
+  <div class="gallery__intro reveal-on-scroll">
+    <h2 class="gallery__title">Relics of the Vault</h2>
+    <p class="gallery__subtitle">Two images, waiting to be set.</p>
+  </div>
+
+  <div class="gallery__grid">
+
+    <!-- ============================================================
+         REPLACE ME: STATUE IMAGE
+         Set the background in style.css (search "STATUE_IMAGE_HERE")
+         or uncomment the <img> tag below.
+         ============================================================ -->
+    <figure class="gallery__item reveal-on-scroll" id="statueSlot" data-placeholder="STATUE_IMAGE_HERE">
+      <!-- <img src="your-statue.jpg" alt="Statue" class="gallery__img"> -->
+      <div class="gallery__placeholder">
+        <span class="gallery__placeholder-icon">&#9770;</span>
+        <span class="gallery__placeholder-text">STATUE_IMAGE_HERE</span>
+      </div>
+      <figcaption class="gallery__caption">The Guardian</figcaption>
+    </figure>
+
+    <!-- ============================================================
+         REPLACE ME: TEMPLE IMAGE
+         Set the background in style.css (search "TEMPLE_IMAGE_HERE")
+         or uncomment the <img> tag below.
+         ============================================================ -->
+    <figure class="gallery__item reveal-on-scroll" id="templeSlot" data-placeholder="TEMPLE_IMAGE_HERE">
+      <!-- <img src="your-temple.jpg" alt="Temple" class="gallery__img"> -->
+      <div class="gallery__placeholder">
+        <span class="gallery__placeholder-icon">&#9723;</span>
+        <span class="gallery__placeholder-text">TEMPLE_IMAGE_HERE</span>
+      </div>
+      <figcaption class="gallery__caption">The Sanctuary</figcaption>
+    </figure>
+
+  </div>
+</section>
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <div class="footer__mark">WISDOM VAULT</div>
+  <p class="footer__line">Every word kept. Every voice remembered.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
