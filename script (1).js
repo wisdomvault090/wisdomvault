@@ -40,9 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
       playHeroEntrance();
     }
   }, 3200);
-   setTimeout(() => {
-  loader.classList.add('is-hidden');
-}, 1000);
+  
 
 
   /* ------------------------------------------------------------------
